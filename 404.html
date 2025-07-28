@@ -21,19 +21,19 @@
 
   /* Container */
   .container, .main-screen {
-    background: #fff0f6cc;
-    border-radius: 25px;
-    box-shadow: 0 8px 25px rgba(255, 102, 163, 0.3);
-    padding: 40px 30px;
-    max-width: 720px; /* wider container */
-    max-height: 90vh; /* taller container */
-    width: 95vw;
-    height: 85vh;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-    overflow-y: auto;
-  }
+  background: #fff0f6cc;
+  border-radius: 0; /* remove rounded corners for full screen */
+  box-shadow: none; /* remove shadow for edge-to-edge */
+  padding: 40px 50px;
+  width: 100vw;
+  height: 2500vh;
+  max-width: 100vw;
+  max-height: 2500vh;
+  text-align: center;
+  position: relative;
+  z-index: 100;
+  overflow-y: auto;
+}
 
   h1 {
     font-size: 3.5rem; /* bigger font */
