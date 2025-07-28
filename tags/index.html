@@ -1,0 +1,554 @@
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>All tags - luv u</title><meta name="robots" content="noindex, follow"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="stylesheet" href="./../assets/css/style.css?v=11bee19e86e8eda2cf9a60efd975666d"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","name":"luv u","url":"./../"}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Will You Be My Valentine?</title><style>/* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background-color: #ffe6ec;
+      color: #e60073;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .main-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 40px;
+    }
+
+    /* Buttons */
+    button {
+      position: absolute;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease, top 0.2s ease, left 0.2s ease;
+      user-select: none;
+    }
+
+    .yes-btn {
+      background-color: #ff66b2;
+      color: white;
+      top: 60%;
+      left: 40%;
+      transform-origin: center center;
+    }
+
+    .no-btn {
+      background-color: #cccccc;
+      color: #333;
+      top: 60%;
+      left: 55%;
+    }
+
+    /* End screen styles */
+    .end-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .self-description {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      line-height: 2;
+      color: #d4006c;
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+    }
+
+    .self-description li {
+      animation: fadeInUp 0.5s ease forwards;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .self-description li:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+    .self-description li:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+    .self-description li:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+    .self-description li:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Read More button */
+    #readMoreBtn {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+      padding: 14px 28px;
+      font-size: 1.2rem;
+      background-color: #ffb3d9;
+      color: #800040;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1;
+      user-select: none;
+    }
+
+    #readMoreBtn:hover {
+      background-color: #ff80bf;
+    }
+
+    /* Floating hearts animation */
+    .floating-hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+    }
+
+    .heart-shape {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatHeart 6s linear infinite;
+      opacity: 0.7;
+      user-select: none;
+    }
+
+    .heart-shape:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .heart-shape:nth-child(2) {
+      left: 30%;
+      animation-delay: 1s;
+    }
+
+    .heart-shape:nth-child(3) {
+      left: 50%;
+      animation-delay: 2s;
+    }
+
+    .heart-shape:nth-child(4) {
+      left: 70%;
+      animation-delay: 3s;
+    }
+
+    .heart-shape:nth-child(5) {
+      left: 90%;
+      animation-delay: 4s;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        bottom: -50px;
+        transform: scale(1) rotate(0deg);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.3) rotate(20deg);
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        transform: scale(1) rotate(-20deg);
+        opacity: 0;
+      }
+    }
+
+    /* Modal popup */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff0f5;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 30px #ff66b2;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #a3005a;
+      position: relative;
+      max-height: 80vh;
+      overflow-y: auto;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid #ff66b2;
+      box-shadow: 0 0 15px #ff66b2;
+    }
+
+    .profile-details {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .profile-details > div {
+      flex: 1 1 150px;
+      min-width: 150px;
+      text-align: left;
+    }
+
+    .profile-details h3 {
+      color: #cc0066;
+      margin-bottom: 10px;
+    }
+
+    .profile-details ul {
+      list-style: none;
+      padding-left: 0;
+      color: #d4006c;
+      margin-top: 0;
+    }
+
+    .profile-details li {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .contact-info {
+      margin-top: 25px;
+      font-size: 1.1rem;
+      color: #b30059;
+      text-align: center;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .contact-info p {
+      margin: 8px 0;
+    }
+
+    /* Close button for modal */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: #ff3399;
+      font-size: 2rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+
+    .close:hover {
+      color: #cc0066;
+    }
+
+    /* Modal Read More button style */
+    #showProfileBtn {
+      background-color: #ff66b2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      margin-top: 10px;
+    }
+
+    #showProfileBtn:hover {
+      background-color: #ff3399;
+    }
+      body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: #fff0f5;
+  overflow: hidden;
+}
+
+.main-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #d63384;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  position: absolute;
+}
+
+.yes {
+  background-color: #ff69b4;
+  color: white;
+  left: 40%;
+  top: 55%;
+}
+
+.no {
+  background-color: #ffc0cb;
+  color: white;
+  left: 55%;
+  top: 55%;
+}
+
+.end-screen {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+}
+
+.hearts-bg::before {
+  content: '💖 💘 💝 💞 💓 💗 💕';
+  position: absolute;
+  font-size: 5rem;
+  animation: float 5s infinite linear;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% { transform: translate(-50%, 0); }
+  100% { transform: translate(-50%, -100vh); }
+}
+
+.message {
+  text-align: center;
+  color: #c2185b;
+}
+
+.read-more {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 1rem;
+  position: relative;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.profile-pic {
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.profile-details {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: left;
+}
+
+.profile-details div {
+  flex: 1 1 200px;
+}
+
+.profile-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pickup-line {
+  font-style: italic;
+  color: #d63384;
+  margin-top: 1rem;
+}</style></head><body><div class="main-screen"><h1>Will you be my valentine?</h1><button id="yesBtn" class="yes-btn">Yes 💖</button> <button id="noBtn" class="no-btn">No 😢</button></div><div id="endScreen" class="end-screen"><h2>Yay! You're the best! 💕</h2><ul class="self-description"><li>🎨 I love making things by hand with care</li><li>🧠 Smart, with a dash of quirky humor</li><li>😊 Kind-hearted and always here for you</li><li>🌿 I adore the great outdoors, coding, and animals</li></ul><button id="readMoreBtn">Read More 💌</button><div class="floating-hearts" aria-hidden="true"><div class="heart-shape">❤️</div><div class="heart-shape">💖</div><div class="heart-shape">💕</div><div class="heart-shape">💗</div><div class="heart-shape">💘</div></div></div><div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-content"><span class="close" id="closeModal" role="button" aria-label="Close modal">&times;</span><div id="readMoreContent"><h2 id="modalTitle">💌 Just a Little More...</h2><p>Want to see my dating profile? Click the button below!</p><button id="showProfileBtn">See My Dating Profile 💖</button></div><div id="profileCard" style="display:none; text-align: center; color: #a3005a;"><h2>💫 About Me</h2><p>Hi! I’m a big fan of the great outdoors, coding magic, and furry friends. Here’s a little more about me:</p><div class="profile-details"><div><h3>❤️ Likes</h3><ul><li>🌲 Nature hikes & starry nights</li><li>💻 Coding challenges & puzzles</li><li>🐾 Hanging out with animals</li><li>🍝 Delicious Italian food</li><li>🔥 Cozy cold nights by the fire</li><li>🎨 Crafting & making things by hand</li></ul></div><div><h3>🙅‍♂️ Dislikes</h3><ul><li>🚫 Rudeness</li><li>🐍 Bugs in code (and real bugs sometimes!)</li><li>⏰ Being late</li></ul></div><div><h3>🍪 Favorite Snacks</h3><ul><li>🍝 Italian food (because pizza counts, right?)</li><li>🔥 Cozy snacks for cold nights by the fire</li></ul><p style="margin-top:12px; font-size:1.4rem; color:#cc0066; font-weight:bold; text-align:center;">&lt;3 you &lt;3</p></div></div><div class="contact-info"><p>📞 Call me maybe? <strong>(850) 866-4610</strong></p><p>📧 Let’s code & cuddle: <strong>Roman.golds057@gmail.com</strong></p><p id="pickupLine" class="pickup-line">🧀 Are you made of stardust? Because every time I look at you, I forget how to breathe.✨💖</p></div></div></div></div><script>const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const mainScreen = document.querySelector('.main-screen');
+    const endScreen = document.getElementById('endScreen');
+
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+    const readMoreContent = document.getElementById('readMoreContent');
+    const profileCard = document.getElementById('profileCard');
+    const showProfileBtn = document.getElementById('showProfileBtn');
+
+    let yesSize = 1;
+
+    // Move no button randomly, reset yes button to no's previous position and increase yes size
+    noBtn.addEventListener('click', () => {
+      const prevLeft = noBtn.offsetLeft;
+      const prevTop = noBtn.offsetTop;
+      const noWidth = noBtn.offsetWidth;
+      const noHeight = noBtn.offsetHeight;
+      const padding = 20;
+      const maxLeft = window.innerWidth - noWidth - padding;
+      const maxTop = window.innerHeight - noHeight - padding;
+
+      // Random new position inside viewport with padding
+      const newLeft = Math.floor(Math.random() * maxLeft) + padding/2;
+      const newTop = Math.floor(Math.random() * maxTop) + padding/2;
+
+      noBtn.style.left = `${newLeft}px`;
+      noBtn.style.top = `${newTop}px`;
+
+      // Move yes button to previous no position
+      yesBtn.style.left = `${prevLeft}px`;
+      yesBtn.style.top = `${prevTop}px`;
+
+      // Grow yes button
+      yesSize += 0.1;
+      yesBtn.style.transform = `scale(${yesSize})`;
+    });
+
+    // Show end screen when yes clicked
+    yesBtn.addEventListener('click', () => {
+      mainScreen.style.display = 'none';
+      endScreen.style.display = 'flex';
+    });
+
+    // Read More button opens modal with intro content shown, profile hidden
+    readMoreBtn.addEventListener('click', () => {
+      modal.style.display = 'flex';
+      readMoreContent.style.display = 'block';
+      profileCard.style.display = 'none';
+    });
+
+    // Close modal on close button click
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Close modal on outside click
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Show full dating profile card inside modal when button clicked
+    showProfileBtn.addEventListener('click', () => {
+      readMoreContent.style.display = 'none';
+      profileCard.style.display = 'block';
+    });
+
+    // Make Read More button grow every 10 seconds until clicked
+    let readMoreScale = 1;
+    let readMoreGrowInterval = setInterval(() => {
+      if (readMoreBtn.style.display !== "none") {
+        readMoreScale += 0.1;
+        readMoreBtn.style.transform = `translateX(-50%) scale(${readMoreScale})`;
+      }
+    }, 10000);
+
+    // Stop growing Read More button once clicked
+    readMoreBtn.addEventListener('click', () => {
+      clearInterval(readMoreGrowInterval);
+    });</script></body></head></html><body class="tags-template"><header class="top js-header"><a class="logo" href="./../">luv u</a></header><main class="page page--tags"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>Tags</h1><p class="page__desc">Collection of all 0 tags</p></div></header></div><div class="wrapper"><ul class="feed feed--grid"></ul></div></main><footer class="footer"><div class="wrapper"><div class="footer__copyright">Powered by Publii</div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="./../assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="./../assets/js/scripts.min.js?v=700105c316933a8202041b6415abb233"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }</script></body>
