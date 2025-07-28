@@ -1,548 +1,647 @@
-<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Error 404 - luv u</title><meta name="robots" content="noindex, follow"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="stylesheet" href="./assets/css/style.css?v=11bee19e86e8eda2cf9a60efd975666d"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","name":"luv u","url":"./"}</script><noscript><style>img[loading] {
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Error 404 - luv u</title><meta name="robots" content="noindex, follow"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="stylesheet" href="./assets/css/style.css?v=f17db5b3b599a574dca3f8ffa88bab49"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","name":"luv u","url":"./"}</script><noscript><style>img[loading] {
                     opacity: 1;
-                }</style></noscript><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Will You Be My Valentine?</title><style>/* General Styles */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Comic Sans MS", cursive, sans-serif;
-      background-color: #ffe6ec;
-      color: #e60073;
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
-    }
+                }</style></noscript><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Will You Be My Valentine? 💖</title><link rel="manifest" href="manifest.json"><style>/* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #fff0f5);
+    overflow-x: hidden;
+    color: #b33471;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
 
-    .main-screen {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-    }
+  /* Container */
+  .container, .main-screen {
+    background: #fff0f6cc;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(255, 102, 163, 0.3);
+    padding: 40px 30px;
+    max-width: 720px; /* wider container */
+    max-height: 90vh; /* taller container */
+    width: 95vw;
+    height: 85vh;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    overflow-y: auto;
+  }
 
-    h1 {
-      font-size: 3rem;
-      margin-top: 40px;
-    }
+  h1 {
+    font-size: 3.5rem; /* bigger font */
+    margin-bottom: 25px;
+    color: #cc3a7d;
+  }
+  h2 {
+    color: #cc3a7d;
+  }
 
-    /* Buttons */
-    button {
-      position: absolute;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.2s ease, top 0.2s ease, left 0.2s ease;
-      user-select: none;
-    }
+  /* Buttons */
+  button {
+    cursor: pointer;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.8rem; /* bigger font */
+    padding: 20px 44px; /* bigger buttons */
+    margin: 20px 14px 0 14px;
+    font-weight: 700;
+    color: white;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  #yesBtn, .yes-btn {
+    background: #ff6cb7;
+  }
+  #yesBtn:hover, .yes-btn:hover {
+    background: #ff4b95;
+  }
+  #noBtn, .no-btn {
+    background: #f8c8d9;
+    color: #a6366d;
+    position: relative;
+    margin-top: 20px;
+  }
+  #noBtn:hover, .no-btn:hover {
+    background: #e6a9c4;
+  }
 
-    .yes-btn {
-      background-color: #ff66b2;
-      color: white;
-      top: 60%;
-      left: 40%;
-      transform-origin: center center;
-    }
+  /* Clearer quiz selection styling: highlight border and background */
+  #quizModal label {
+    display: block;
+    margin-bottom: 12px;
+    color: #b30059;
+    cursor: pointer;
+    font-size: 1.6rem; /* bigger font */
+    padding: 10px 16px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+  }
+  #quizModal input[type="radio"] {
+    margin-right: 14px;
+    transform: scale(1.5); /* bigger radio */
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  #quizModal input[type="radio"]:checked + label {
+    outline: none;
+    border-color: #ff4b95;
+    background-color: #ffe6f2;
+    font-weight: 700;
+  }
 
-    .no-btn {
-      background-color: #cccccc;
-      color: #333;
-      top: 60%;
-      left: 55%;
-    }
+  /* End screen */
+  #endScreen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: #fff0f5;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px #ffb3d9aa;
+    padding: 40px 30px;
+    max-width: 720px;
+    width: 95vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: #a01e5f;
+    user-select: text;
+    text-align: center;
+    font-size: 1.4rem; /* bigger font */
+  }
+  #endScreen h2 {
+    margin-bottom: 20px;
+    font-size: 2.6rem; /* bigger */
+  }
+  #endScreen ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 30px 0;
+    text-align: left;
+    font-size: 1.3rem;
+  }
+  #endScreen ul li {
+    margin-bottom: 16px;
+  }
 
-    /* End screen styles */
-    .end-screen {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      position: relative;
-      text-align: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff0f6;
+    border-radius: 25px;
+    padding: 40px 40px;
+    box-shadow: 0 8px 35px rgba(255, 102, 163, 0.6);
+    max-width: 600px; /* wider modal */
+    width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1000;
+    color: #a6306e;
+    user-select: text;
+  }
+  .modal h2, .modal h3 {
+    margin-top: 0;
+    font-size: 2.2rem; /* bigger heading */
+  }
+  .modal ul {
+    margin-top: 10px;
+    padding-left: 1.2rem;
+    font-size: 1.4rem; /* bigger */
+  }
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 18px;
+    font-size: 34px; /* bigger close icon */
+    color: #cc3a7d;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  .close:hover {
+    color: #a01e5f;
+  }
+  #quizModal p {
+    color: #cc0066;
+    font-weight: bold;
+    margin-bottom: 12px;
+    font-size: 1.6rem; /* bigger */
+  }
 
-    .self-description {
-      list-style: none;
-      padding: 0;
-      margin-top: 20px;
-      font-size: 1.2rem;
-      line-height: 2;
-      color: #d4006c;
-      position: relative;
-      z-index: 1;
-      max-width: 500px;
-    }
+  /* Typing animation container */
+  #typingMessage {
+    font-size: 1.8rem; /* bigger font */
+    margin-top: 35px;
+    min-height: 60px;
+    color: #d24b89;
+    font-style: italic;
+    word-wrap: break-word;
+  }
 
-    .self-description li {
-      animation: fadeInUp 0.5s ease forwards;
+  /* Emoji rain container */
+  #emojiRain {
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: visible;
+    z-index: 5;
+  }
+  .emoji {
+    position: absolute;
+    font-size: 28px; /* bigger emoji */
+    user-select: none;
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  @keyframes fall {
+    0% {
+      transform: translateY(-30px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh);
       opacity: 0;
-      transform: translateY(10px);
     }
+  }
+  @keyframes sway {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(24px);
+    }
+  }
 
-    .self-description li:nth-child(1) {
-      animation-delay: 0.3s;
-    }
-    .self-description li:nth-child(2) {
-      animation-delay: 0.6s;
-    }
-    .self-description li:nth-child(3) {
-      animation-delay: 0.9s;
-    }
-    .self-description li:nth-child(4) {
-      animation-delay: 1.2s;
-    }
+  /* Music toggle button */
+  #musicToggleBtn {
+    margin-top: 20px;
+    background-color: #ff6cb7;
+    font-size: 1.6rem;
+    padding: 18px 40px;
+  }
+  #musicToggleBtn:hover {
+    background-color: #ff4b95;
+  }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+  /* Countdown timer style */
+  .countdown-timer {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem; /* bigger */
+    background-color: #ffe6f2;
+    padding: 14px 20px;
+    border-radius: 14px;
+    color: #c2185b;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(255, 105, 180, 0.3);
+    z-index: 999;
+  }
 
-    /* Read More button */
-    #readMoreBtn {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%) scale(1);
-      padding: 14px 28px;
-      font-size: 1.2rem;
-      background-color: #ffb3d9;
-      color: #800040;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 1;
-      user-select: none;
-    }
+  /* Secret spot */
+  #secretSpot {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    z-index: 999;
+    cursor: pointer;
+  }
 
-    #readMoreBtn:hover {
-      background-color: #ff80bf;
-    }
-
-    /* Floating hearts animation */
-    .floating-hearts {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-    }
-
-    .heart-shape {
-      position: absolute;
-      font-size: 2rem;
-      animation: floatHeart 6s linear infinite;
-      opacity: 0.7;
-      user-select: none;
-    }
-
-    .heart-shape:nth-child(1) {
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .heart-shape:nth-child(2) {
-      left: 30%;
-      animation-delay: 1s;
-    }
-
-    .heart-shape:nth-child(3) {
-      left: 50%;
-      animation-delay: 2s;
-    }
-
-    .heart-shape:nth-child(4) {
-      left: 70%;
-      animation-delay: 3s;
-    }
-
-    .heart-shape:nth-child(5) {
-      left: 90%;
-      animation-delay: 4s;
-    }
-
-    @keyframes floatHeart {
-      0% {
-        bottom: -50px;
-        transform: scale(1) rotate(0deg);
-        opacity: 0.6;
-      }
-      50% {
-        transform: scale(1.3) rotate(20deg);
-        opacity: 1;
-      }
-      100% {
-        bottom: 100%;
-        transform: scale(1) rotate(-20deg);
-        opacity: 0;
-      }
-    }
-
-    /* Modal popup */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background-color: #fff0f5;
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 600px;
-      box-shadow: 0 0 30px #ff66b2;
-      text-align: center;
-      font-size: 1.1rem;
-      color: #a3005a;
-      position: relative;
+  /* Responsive adjustments */
+  @media (max-width: 520px) {
+    .container, #endScreen, .modal {
+      max-width: 95vw;
+      padding: 30px 25px;
+      height: auto;
       max-height: 80vh;
-      overflow-y: auto;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
-
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 4px solid #ff66b2;
-      box-shadow: 0 0 15px #ff66b2;
+    #noBtn {
+      margin-top: 16px;
+      position: relative;
+      left: 0;
     }
-
-    .profile-details {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 20px;
-      flex-wrap: wrap;
-      gap: 20px;
-      width: 100%;
-      max-width: 560px;
+    #yesBtn, #noBtn, button {
+      font-size: 1.6rem;
+      padding: 16px 30px;
+      margin: 14px 8px 0 8px;
     }
-
-    .profile-details > div {
-      flex: 1 1 150px;
-      min-width: 150px;
-      text-align: left;
+    #quizModal label {
+      font-size: 1.3rem;
+      padding: 8px 12px;
     }
+  }
 
-    .profile-details h3 {
-      color: #cc0066;
-      margin-bottom: 10px;
+  /* Floating hearts */
+  .floating-heart {
+    position: fixed;
+    pointer-events: none;
+    font-size: 30px; /* bigger */
+    animation: floatUp 2s ease forwards;
+    user-select: none;
+    z-index: 9999;
+  }
+
+  @keyframes floatUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
-
-    .profile-details ul {
-      list-style: none;
-      padding-left: 0;
-      color: #d4006c;
-      margin-top: 0;
+    100% {
+      opacity: 0;
+      transform: translateY(-80px) scale(1.5);
     }
+  }
 
-    .profile-details li {
-      margin-bottom: 8px;
-      font-size: 1rem;
+  /* Dark mode styles */
+  body.dark-mode {
+    background: linear-gradient(135deg, #2c003e, #1a001f);
+    color: #f7c6d5;
+  }
+
+  body.dark-mode .container,
+  body.dark-mode .main-screen,
+  body.dark-mode #endScreen,
+  body.dark-mode .modal {
+    background: #3b004dcc;
+    color: #f7c6d5;
+    box-shadow: 0 8px 25px rgba(200, 100, 180, 0.7);
+  }
+
+  body.dark-mode button#yesBtn,
+  body.dark-mode button.yes-btn {
+    background: #b64ca6;
+  }
+  body.dark-mode button#yesBtn:hover,
+  body.dark-mode button.yes-btn:hover {
+    background: #a53a8e;
+  }
+
+  body.dark-mode button#noBtn,
+  body.dark-mode button.no-btn {
+    background: #7e4162;
+    color: #f7c6d5;
+  }
+  body.dark-mode button#noBtn:hover,
+  body.dark-mode button.no-btn:hover {
+    background: #6a3654;
+  }
+
+  body.dark-mode #musicToggleBtn {
+    background-color: #b64ca6;
+  }
+  body.dark-mode #musicToggleBtn:hover {
+    background-color: #a53a8e;
+  }
+
+  /* Dark mode toggle button */
+  #darkModeToggleBtn {
+    margin-top: 20px;
+    background-color: #b64ca6;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.6rem;
+    padding: 16px 36px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  #darkModeToggleBtn:hover {
+    background-color: #a53a8e;
+  }</style></head><body><div class="container" id="mainContainer" role="main" aria-label="Valentine question container"><h1>Will you be my Valentine? 💖</h1><button id="yesBtn" aria-label="Yes, I will be your valentine">Yes 💘</button> <button id="noBtn" aria-label="No, I won't be your valentine">No 😢</button><div id="countdown" class="countdown-timer" aria-live="polite" aria-atomic="true"></div></div><div id="quizModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quizTitle" tabindex="-1"><div class="modal-content"><span class="close" id="closeQuiz" role="button" aria-label="Close quiz modal">&times;</span><h2 id="quizTitle">💘 Love Quiz</h2><form id="loveQuizForm"><p>1. What's your perfect date?</p><input type="radio" id="q1a" name="q1" value="a" required> <label for="q1a">Stargazing on a hill 🌌</label> <input type="radio" id="q1b" name="q1" value="b"> <label for="q1b">Coding together 💻</label> <input type="radio" id="q1c" name="q1" value="c"> <label for="q1c">Pizza & movies 🍕🎬</label><br><br><p>2. What’s the most romantic gesture?</p><input type="radio" id="q2a" name="q2" value="a" required> <label for="q2a">Handwritten letters 💌</label> <input type="radio" id="q2b" name="q2" value="b"> <label for="q2b">Surprise hugs 🤗</label> <input type="radio" id="q2c" name="q2" value="c"> <label for="q2c">Long walks & talks 🌙</label><br><br><p>3. Pick your love language:</p><input type="radio" id="q3a" name="q3" value="a" required> <label for="q3a">Words of affirmation 💬</label> <input type="radio" id="q3b" name="q3" value="b"> <label for="q3b">Acts of service 🧁</label> <input type="radio" id="q3c" name="q3" value="c"> <label for="q3c">Quality time ⏰</label><br><br><button type="submit" style="background-color: #ff66b2; color: white; border: none; padding: 16px 28px; border-radius: 12px; cursor: pointer;">Submit 💝</button></form></div></div><section id="endScreen" tabindex="-1" aria-live="polite" aria-label="Valentine acceptance message and profile" role="region"><h2>Yay! 💝 You made me so happy!</h2><ul><li>💡 I'm smart and love new ideas</li><li>😄 I’m funny and love to make people laugh</li><li>🫶 I'm super kind and thoughtful</li><li>🎨 I make cool stuff with my hands</li><li>🌲 I love nature and the outdoors</li><li>🐶 I adore animals</li></ul><button id="readMoreBtn" aria-haspopup="dialog" aria-controls="readMoreModal">Read More 💌</button> <button id="loveLetterBtn" aria-haspopup="dialog" aria-controls="loveLetterModal">Love Letter 💝</button> <button id="musicToggleBtn" aria-pressed="false">🎵 Play Music</button> <button id="darkModeToggleBtn" aria-pressed="false">🌙 Dark Mode</button> <button id="shareResultBtn" style="margin-top: 20px; background-color: #ff66b2; color: white; border: none; padding: 16px 28px; border-radius: 12px; cursor: pointer;">Share Your Valentine Message 💌</button><div id="typingMessage" aria-live="polite" aria-atomic="true"></div></section><div class="modal" id="readMoreModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"><span class="close" id="closeReadMore" role="button" aria-label="Close Read More modal">&times;</span><h3 id="modalTitle">More About Me</h3><ul><li>🍝 I could eat Italian food forever</li><li>🔥 Cold nights + warm fires = my favorite vibe</li><li>💻 Coding and cuddles are my thing</li></ul><p>📧 Contact: <a href="mailto:roman.golds057@gmail.com">roman.golds057@gmail.com</a></p><p>📱 Phone: (850) 866-4610</p><p>🧀 Cheesy line: “Are you a keyboard? Because you're just my type.”</p></div><div class="modal" id="loveLetterModal" role="dialog" aria-modal="true" aria-labelledby="letterTitle" tabindex="-1"><span class="close" id="closeLoveLetter" role="button" aria-label="Close Love Letter modal">&times;</span><h3 id="letterTitle">To My Valentine,</h3><p>You light up my code and my heart 💻❤️</p><p>From every ‘Yes’ you say to all the laughs we share —</p><p>Being with you is the sweetest algorithm of all.</p></div><div id="emojiRain"></div><div id="secretSpot" tabindex="0" aria-label="Secret surprise"></div><script>// Elements references
+  const mainContainer = document.getElementById('mainContainer');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const endScreen = document.getElementById('endScreen');
+  const readMoreBtn = document.getElementById('readMoreBtn');
+  const readMoreModal = document.getElementById('readMoreModal');
+  const closeReadMore = document.getElementById('closeReadMore');
+  const loveLetterBtn = document.getElementById('loveLetterBtn');
+  const loveLetterModal = document.getElementById('loveLetterModal');
+  const closeLoveLetter = document.getElementById('closeLoveLetter');
+  const quizModal = document.getElementById('quizModal');
+  const closeQuiz = document.getElementById('closeQuiz');
+  const loveQuizForm = document.getElementById('loveQuizForm');
+  const typingMessage = document.getElementById('typingMessage');
+  const emojiRain = document.getElementById('emojiRain');
+  const secretSpot = document.getElementById('secretSpot');
+  const secretMessageModal = document.getElementById('secretMessageModal');
+  const closeSecretMessage = document.getElementById('closeSecretMessage');
+  const countdown = document.getElementById('countdown');
+  const musicToggleBtn = document.getElementById('musicToggleBtn');
+  const darkModeToggleBtn = document.getElementById('darkModeToggleBtn');
+  const shareResultBtn = document.getElementById('shareResultBtn');
+
+  // Background music
+  let musicPlaying = false;
+  let audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/17/audio_47bdb83d67.mp3?filename=happy-ukulele-1279.mp3');
+  audio.loop = true;
+  audio.volume = 0.15;
+
+  musicToggleBtn.addEventListener('click', () => {
+    if(musicPlaying){
+      audio.pause();
+      musicToggleBtn.textContent = '🎵 Play Music';
+      musicToggleBtn.setAttribute('aria-pressed', 'false');
+    } else {
+      audio.play();
+      musicToggleBtn.textContent = '🎵 Pause Music';
+      musicToggleBtn.setAttribute('aria-pressed', 'true');
     }
+    musicPlaying = !musicPlaying;
+  });
 
-    .contact-info {
-      margin-top: 25px;
-      font-size: 1.1rem;
-      color: #b30059;
-      text-align: center;
-      width: 100%;
-      max-width: 560px;
+  // Dark mode toggle
+  darkModeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    darkModeToggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+    darkModeToggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+  });
+
+  // Yes button shows quiz modal
+  yesBtn.addEventListener('click', () => {
+    quizModal.style.display = 'block';
+    quizModal.focus();
+
+    // Also trigger emoji rain
+    for(let i = 0; i < 20; i++){
+      createEmoji();
     }
+  });
 
-    .contact-info p {
-      margin: 8px 0;
-    }
+  closeQuiz.addEventListener('click', () => {
+    quizModal.style.display = 'none';
+  });
 
-    /* Close button for modal */
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      color: #ff3399;
-      font-size: 2rem;
-      cursor: pointer;
-      font-weight: bold;
-      transition: color 0.3s ease;
-      user-select: none;
-    }
+  // No button avoidance - moves randomly on hover
+  // No button avoidance - moves randomly on hover
+noBtn.addEventListener('mouseenter', () => {
+  const containerRect = mainContainer.getBoundingClientRect();
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
 
-    .close:hover {
-      color: #cc0066;
-    }
+  // Calculate max allowed position inside container
+  const maxX = containerRect.width - btnWidth;
+  const maxY = containerRect.height - btnHeight;
 
-    /* Modal Read More button style */
-    #showProfileBtn {
-      background-color: #ff66b2;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      margin-top: 10px;
-    }
+  // Generate random position within container bounds
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
 
-    #showProfileBtn:hover {
-      background-color: #ff3399;
-    }
-      body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Comic Sans MS', cursive;
-  background: #fff0f5;
-  overflow: hidden;
-}
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = randomX + 'px';
+  noBtn.style.top = randomY + 'px';
+});
 
-.main-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
+// Remove mouseleave resetting to static to prevent glitch
+// noBtn.addEventListener('mouseleave', () => {
+//   noBtn.style.position = 'static';
+//   noBtn.style.left = '';
+//   noBtn.style.top = '';
+// });
 
-h1 {
-  font-size: 2.5rem;
-  color: #d63384;
-  margin-bottom: 2rem;
-}
 
-.btn {
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  border: none;
-  border-radius: 1rem;
-  cursor: pointer;
-  position: absolute;
-}
-
-.yes {
-  background-color: #ff69b4;
-  color: white;
-  left: 40%;
-  top: 55%;
-}
-
-.no {
-  background-color: #ffc0cb;
-  color: white;
-  left: 55%;
-  top: 55%;
-}
-
-.end-screen {
-  display: none;
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex-direction: column;
-}
-
-.hearts-bg::before {
-  content: '💖 💘 💝 💞 💓 💗 💕';
-  position: absolute;
-  font-size: 5rem;
-  animation: float 5s infinite linear;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-@keyframes float {
-  0% { transform: translate(-50%, 0); }
-  100% { transform: translate(-50%, -100vh); }
-}
-
-.message {
-  text-align: center;
-  color: #c2185b;
-}
-
-.read-more {
-  margin-top: 1rem;
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  background-color: #e91e63;
-  color: white;
-  border: none;
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0; top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background: white;
-  padding: 2rem;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 1rem;
-  position: relative;
-  text-align: center;
-}
-
-.close {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.profile-pic {
-  width: 150px;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-.profile-details {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: left;
-}
-
-.profile-details div {
-  flex: 1 1 200px;
-}
-
-.profile-card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.pickup-line {
-  font-style: italic;
-  color: #d63384;
-  margin-top: 1rem;
-}</style></head><body><div class="main-screen"><h1>Will you be my valentine?</h1><button id="yesBtn" class="yes-btn">Yes 💖</button> <button id="noBtn" class="no-btn">No 😢</button></div><div id="endScreen" class="end-screen"><h2>Yay! You're the best! 💕</h2><ul class="self-description"><li>🎨 I love making things by hand with care</li><li>🧠 Smart, with a dash of quirky humor</li><li>😊 Kind-hearted and always here for you</li><li>🌿 I adore the great outdoors, coding, and animals</li></ul><button id="readMoreBtn">Read More 💌</button><div class="floating-hearts" aria-hidden="true"><div class="heart-shape">❤️</div><div class="heart-shape">💖</div><div class="heart-shape">💕</div><div class="heart-shape">💗</div><div class="heart-shape">💘</div></div></div><div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-content"><span class="close" id="closeModal" role="button" aria-label="Close modal">&times;</span><div id="readMoreContent"><h2 id="modalTitle">💌 Just a Little More...</h2><p>Want to see my dating profile? Click the button below!</p><button id="showProfileBtn">See My Dating Profile 💖</button></div><div id="profileCard" style="display:none; text-align: center; color: #a3005a;"><h2>💫 About Me</h2><p>Hi! I’m a big fan of the great outdoors, coding magic, and furry friends. Here’s a little more about me:</p><div class="profile-details"><div><h3>❤️ Likes</h3><ul><li>🌲 Nature hikes & starry nights</li><li>💻 Coding challenges & puzzles</li><li>🐾 Hanging out with animals</li><li>🍝 Delicious Italian food</li><li>🔥 Cozy cold nights by the fire</li><li>🎨 Crafting & making things by hand</li></ul></div><div><h3>🙅‍♂️ Dislikes</h3><ul><li>🚫 Rudeness</li><li>🐍 Bugs in code (and real bugs sometimes!)</li><li>⏰ Being late</li></ul></div><div><h3>🍪 Favorite Snacks</h3><ul><li>🍝 Italian food (because pizza counts, right?)</li><li>🔥 Cozy snacks for cold nights by the fire</li></ul><p style="margin-top:12px; font-size:1.4rem; color:#cc0066; font-weight:bold; text-align:center;">&lt;3 you &lt;3</p></div></div><div class="contact-info"><p>📞 Call me maybe? <strong>(850) 866-4610</strong></p><p>📧 Let’s code & cuddle: <strong>Roman.golds057@gmail.com</strong></p><p id="pickupLine" class="pickup-line">🧀 Are you made of stardust? Because every time I look at you, I forget how to breathe.✨💖</p></div></div></div></div><script>const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const mainScreen = document.querySelector('.main-screen');
-    const endScreen = document.getElementById('endScreen');
-
-    const readMoreBtn = document.getElementById('readMoreBtn');
-    const modal = document.getElementById('modal');
-    const closeModal = document.getElementById('closeModal');
-    const readMoreContent = document.getElementById('readMoreContent');
-    const profileCard = document.getElementById('profileCard');
-    const showProfileBtn = document.getElementById('showProfileBtn');
-
-    let yesSize = 1;
-
-    // Move no button randomly, reset yes button to no's previous position and increase yes size
-    noBtn.addEventListener('click', () => {
-      const prevLeft = noBtn.offsetLeft;
-      const prevTop = noBtn.offsetTop;
-      const noWidth = noBtn.offsetWidth;
-      const noHeight = noBtn.offsetHeight;
-      const padding = 20;
-      const maxLeft = window.innerWidth - noWidth - padding;
-      const maxTop = window.innerHeight - noHeight - padding;
-
-      // Random new position inside viewport with padding
-      const newLeft = Math.floor(Math.random() * maxLeft) + padding/2;
-      const newTop = Math.floor(Math.random() * maxTop) + padding/2;
-
-      noBtn.style.left = `${newLeft}px`;
-      noBtn.style.top = `${newTop}px`;
-
-      // Move yes button to previous no position
-      yesBtn.style.left = `${prevLeft}px`;
-      yesBtn.style.top = `${prevTop}px`;
-
-      // Grow yes button
-      yesSize += 0.1;
-      yesBtn.style.transform = `scale(${yesSize})`;
+  // Love quiz logic
+  loveQuizForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(loveQuizForm);
+    // Simple scoring: count how many 'a' answers
+    let score = 0;
+    ['q1', 'q2', 'q3'].forEach(q => {
+      if(formData.get(q) === 'a') score++;
     });
 
-    // Show end screen when yes clicked
-    yesBtn.addEventListener('click', () => {
-      mainScreen.style.display = 'none';
-      endScreen.style.display = 'flex';
-    });
+    quizModal.style.display = 'none';
+    mainContainer.style.display = 'none';
+    endScreen.style.display = 'flex';
+    endScreen.focus();
 
-    // Read More button opens modal with intro content shown, profile hidden
-    readMoreBtn.addEventListener('click', () => {
-      modal.style.display = 'flex';
-      readMoreContent.style.display = 'block';
-      profileCard.style.display = 'none';
-    });
+    // Show typing animation message based on score
+    let message = '';
+    if(score === 3) message = "You’re my perfect match! 💞";
+    else if(score === 2) message = "I think we're a great fit! 💖";
+    else message = "Thanks for being you! 💘";
 
-    // Close modal on close button click
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
+    typeMessage(message);
+  });
 
-    // Close modal on outside click
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
+  // Typing animation function
+  function typeMessage(msg) {
+    typingMessage.textContent = '';
+    let i = 0;
+    const interval = setInterval(() => {
+      typingMessage.textContent += msg.charAt(i);
+      i++;
+      if(i > msg.length) clearInterval(interval);
+    }, 60);
+  }
+
+  // Read more modal open/close
+  readMoreBtn.addEventListener('click', () => {
+    readMoreModal.style.display = 'block';
+    readMoreModal.focus();
+  });
+  closeReadMore.addEventListener('click', () => {
+    readMoreModal.style.display = 'none';
+  });
+
+  // Love letter modal open/close
+  loveLetterBtn.addEventListener('click', () => {
+    loveLetterModal.style.display = 'block';
+    loveLetterModal.focus();
+  });
+  closeLoveLetter.addEventListener('click', () => {
+    loveLetterModal.style.display = 'none';
+  });
+
+  // Share button functionality
+  shareResultBtn.addEventListener('click', async () => {
+    const shareData = {
+      title: 'My Valentine Message',
+      text: typingMessage.textContent || "I said YES to being a Valentine! 💖",
+      url: window.location.href
+    };
+    if(navigator.share){
+      try {
+        await navigator.share(shareData);
+      } catch(err){
+        alert('Sharing cancelled or failed.');
+      }
+    } else {
+      alert('Sharing is not supported in your browser.');
+    }
+  });
+
+  // Click hearts effect function
+  function createFloatingHeart(x, y) {
+    const heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.textContent = '💖';
+    heart.style.left = (x - 12) + 'px';
+    heart.style.top = (y - 12) + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 2000);
+  }
+
+  // Add floating hearts on body click (except buttons/modals)
+  document.body.addEventListener('click', (e) => {
+    if(e.target.closest('button') || e.target.closest('.modal')) return;
+    createFloatingHeart(e.clientX, e.clientY);
+  });
+
+  // Emoji rain effect on Yes button click (already done on yesBtn click)
+
+  function createEmoji() {
+    const emoji = document.createElement('div');
+    emoji.className = 'emoji';
+    emoji.style.left = Math.random() * window.innerWidth + 'px';
+    emoji.style.animationDuration = (3 + Math.random() * 2) + 's';
+    emoji.style.fontSize = (24 + Math.random() * 30) + 'px'; // bigger emojis
+    emoji.textContent = ['💖','💕','❤️','❣️','💗'][Math.floor(Math.random() * 5)];
+    emojiRain.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 5000);
+  }
+
+  // Secret spot functionality (no changes needed)
+
+  // Accessibility: close modals on ESC key
+  document.addEventListener('keydown', (e) => {
+    if(e.key === "Escape"){
+      [quizModal, readMoreModal, loveLetterModal, secretMessageModal].forEach(modal => {
+        if(modal && modal.style.display === 'block'){
+          modal.style.display = 'none';
+        }
+      });
+    }
+  });
+
+  // Daily love quote array
+  const dailyQuotes = [
+    "Love is composed of a single soul inhabiting two bodies. – Aristotle",
+    "You are my heart, my life, my one and only thought. – Arthur Conan Doyle",
+    "In all the world, there is no heart for me like yours. – Maya Angelou",
+    "To love and be loved is to feel the sun from both sides. – David Viscott",
+    "Love doesn't make the world go round. Love is what makes the ride worthwhile. – Franklin P. Jones",
+    "Every love story is beautiful, but ours is my favorite. 💖",
+    "I love you not only for what you are but for what I am when I am with you. – Roy Croft",
+    "You are the source of my joy, the center of my world and the whole of my heart. – Unknown"
+  ];
+
+  // Show daily quote on main screen
+  function showDailyQuote() {
+    const index = new Date().getDate() % dailyQuotes.length;
+    const quoteDiv = document.createElement('div');
+    quoteDiv.style.marginTop = '25px';
+    quoteDiv.style.fontSize = '1.6rem'; // slightly bigger
+    quoteDiv.style.fontStyle = 'italic';
+    quoteDiv.style.color = '#c04878';
+    quoteDiv.textContent = dailyQuotes[index];
+    mainContainer.appendChild(quoteDiv);
+  }
+  showDailyQuote();
+
+  // Countdown timer until next Valentine's Day (Feb 14)
+  function updateCountdown(){
+    const now = new Date();
+    let year = now.getFullYear();
+    const valentine = new Date(year, 1, 14, 0, 0, 0); // Feb 14 of current year
+
+    if(now > valentine){
+      valentine.setFullYear(year + 1);
+    }
+
+    const diff = valentine - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    countdown.textContent = `💌 Valentine's Day in ${days}d ${hrs}h ${mins}m ${secs}s`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Accessibility focus trap on modals (simple)
+  function trapFocus(element){
+    if(!element) return;
+    const focusableEls = element.querySelectorAll('a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])');
+    if(focusableEls.length === 0) return;
+    const firstFocusableEl = focusableEls[0];
+    const lastFocusableEl = focusableEls[focusableEls.length -1];
+    element.addEventListener('keydown', (e) => {
+      if(e.key === 'Tab'){
+        if(e.shiftKey){
+          if(document.activeElement === firstFocusableEl){
+            e.preventDefault();
+            lastFocusableEl.focus();
+          }
+        } else {
+          if(document.activeElement === lastFocusableEl){
+            e.preventDefault();
+            firstFocusableEl.focus();
+          }
+        }
       }
     });
-
-    // Show full dating profile card inside modal when button clicked
-    showProfileBtn.addEventListener('click', () => {
-      readMoreContent.style.display = 'none';
-      profileCard.style.display = 'block';
-    });
-
-    // Make Read More button grow every 10 seconds until clicked
-    let readMoreScale = 1;
-    let readMoreGrowInterval = setInterval(() => {
-      if (readMoreBtn.style.display !== "none") {
-        readMoreScale += 0.1;
-        readMoreBtn.style.transform = `translateX(-50%) scale(${readMoreScale})`;
-      }
-    }, 10000);
-
-    // Stop growing Read More button once clicked
-    readMoreBtn.addEventListener('click', () => {
-      clearInterval(readMoreGrowInterval);
-    });</script></body></head></html><body class="error-template"><header class="top js-header"><a class="logo" href="./">luv u</a></header><main class="page page--error"><div class="content"><div class="hero"><header class="hero__content"><div class="wrapper"><h1>404</h1><div class="page__desc"><p>The page you were looking for appears to have been moved, deleted or does not exist. You could go back to where you were or head straight to our home page.</p></div><a href="./" class="btn hero__cta btn--icon"><svg width="18" height="18" aria-hidden="true"><use xlink:href="./assets/svg/svg-map.svg#arrow-prev"/></svg> <span>Go home</span></a></div></header></div></div></main><footer class="footer"><div class="wrapper"><div class="footer__copyright">Powered by Publii</div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="./assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="./assets/js/scripts.min.js?v=700105c316933a8202041b6415abb233"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
+  }
+  [quizModal, readMoreModal, loveLetterModal, secretMessageModal].forEach(trapFocus);</script></body></head></html><body class="error-template"><header class="top js-header"><a class="logo" href="./">luv u</a></header><main class="page page--error"><div class="content"><div class="hero"><header class="hero__content"><div class="wrapper"><h1>404</h1><div class="page__desc"><p>The page you were looking for appears to have been moved, deleted or does not exist. You could go back to where you were or head straight to our home page.</p></div><a href="./" class="btn hero__cta btn--icon"><svg width="18" height="18" aria-hidden="true"><use xlink:href="./assets/svg/svg-map.svg#arrow-prev"/></svg> <span>Go home</span></a></div></header></div></div></main><footer class="footer"><div class="wrapper"><div class="footer__copyright"><p> </p><p> </p></div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="./assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="./assets/js/scripts.min.js?v=700105c316933a8202041b6415abb233"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
         for (var i = 0; i < images.length; i++) {
             if (images[i].complete) {
                 images[i].classList.add('is-loaded');
