@@ -1,45 +1,55 @@
 <!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>luv u</title><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="./"><link rel="stylesheet" href="./assets/css/style.css?v=f17db5b3b599a574dca3f8ffa88bab49"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","name":"luv u","url":"./"}</script><noscript><style>img[loading] {
                     opacity: 1;
-                }</style></noscript><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Will You Be My Valentine? 💖</title><link rel="manifest" href="manifest.json"><style>/* Reset & base */
+                }</style></noscript><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Will You Be My Valentine? 💖</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"><style>/* Reset & base */
   * {
     box-sizing: border-box;
   }
-  html, body {
-    margin: 0; padding: 0;
-    height: 100%;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(135deg, #ffe6f0, #fff0f5);
-    overflow-x: hidden;
-    color: #b33471;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
+   html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Pacifico', cursive;
+      background: #ffe6f0;
+      overflow: hidden;
+    }
 
-  /* Container */
-  .container, .main-screen {
-  background: #fff0f6cc;
-  border-radius: 0; /* remove rounded corners for full screen */
-  box-shadow: none; /* remove shadow for edge-to-edge */
-  padding: 40px 50px;
+    .fullscreen-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   width: 100vw;
-  height: 2500vh;
-  max-width: 100vw;
-  max-height: 2500vh;
-  text-align: center;
-  position: relative;
-  z-index: 100;
-  overflow-y: auto;
+  background: #ffe6f0;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
-  h1 {
-    font-size: 3.5rem; /* bigger font */
-    margin-bottom: 25px;
-    color: #cc3a7d;
-  }
+   .container, .main-screen {
+  background: #fff0f6cc;
+  width: 90vw;
+  max-width: 900px;
+  min-height: 80vh;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+}
+
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      color: #ff4d88;
+    }
+
+    .button-group {
+      margin-top: 30px;
+    }
   h2 {
     color: #cc3a7d;
   }
